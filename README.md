@@ -5,7 +5,7 @@ Youngjoon Jeong<sup>&#42;</sup>, Junha Chun<sup>&#42;</sup>, Taesup Kim<sup>&#82
 Seoul National University  
 &#42;Equal contribution, &#8224;Corresponding author
 
-Accepted to CVPR 2026
+Accepted to CVPR 2026 (Poster)
 
 ![VILA teaser](https://joon-stack.github.io/VILA/static/images/fig_main.png)
 
