@@ -1,0 +1,9 @@
+name: vila
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip=24.3.1
+  - setuptools
+  - wheel

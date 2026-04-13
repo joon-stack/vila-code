@@ -1,0 +1,204 @@
+{
+  "views": [
+    {
+      "name": "view_00",
+      "camera_name": "agentview",
+      "pos": [0.098103, -0.409149, 1.424856],
+      "quat": [0.945063, 0.305082, 0.036064, 0.111717],
+      "azimuth_deg": -76.52,
+      "elevation_deg": -9.3
+    },
+    {
+      "name": "view_01",
+      "camera_name": "agentview",
+      "pos": [0.202127, -0.408044, 1.395121],
+      "quat": [0.915911, 0.330377, 0.077343, 0.214419],
+      "azimuth_deg": -63.65,
+      "elevation_deg": -5.41
+    },
+    {
+      "name": "view_02",
+      "camera_name": "agentview",
+      "pos": [0.047318, -0.481147, 1.367716],
+      "quat": [0.929257, 0.366171, 0.017962, 0.045584],
+      "azimuth_deg": -84.38,
+      "elevation_deg": -2.06
+    },
+    {
+      "name": "view_03",
+      "camera_name": "agentview",
+      "pos": [0.020398, -0.55868, 1.274114],
+      "quat": [0.893713, 0.448267, 0.008181, 0.01631],
+      "azimuth_deg": -87.91,
+      "elevation_deg": 8.2
+    },
+    {
+      "name": "view_04",
+      "camera_name": "agentview",
+      "pos": [0.217512, -0.548249, 1.223437],
+      "quat": [0.857712, 0.478633, 0.091478, 0.163929],
+      "azimuth_deg": -68.36,
+      "elevation_deg": 13.25
+    },
+    {
+      "name": "view_05",
+      "camera_name": "agentview",
+      "pos": [0.25232, -0.338008, 1.424009],
+      "quat": [0.902852, 0.292458, 0.097121, 0.299823],
+      "azimuth_deg": -53.26,
+      "elevation_deg": -9.18
+    },
+    {
+      "name": "view_06",
+      "camera_name": "agentview",
+      "pos": [0.397262, -0.177139, 1.413133],
+      "quat": [0.794655, 0.268602, 0.174326, 0.515739],
+      "azimuth_deg": -24.03,
+      "elevation_deg": -7.73
+    },
+    {
+      "name": "view_07",
+      "camera_name": "agentview",
+      "pos": [0.327817, -0.357177, 1.366327],
+      "quat": [0.86649, 0.342876, 0.133495, 0.337357],
+      "azimuth_deg": -47.45,
+      "elevation_deg": -1.9
+    },
+    {
+      "name": "view_08",
+      "camera_name": "agentview",
+      "pos": [0.398516, -0.372237, 1.293858],
+      "quat": [0.827092, 0.396509, 0.172212, 0.359224],
+      "azimuth_deg": -43.05,
+      "elevation_deg": 6.15
+    },
+    {
+      "name": "view_09",
+      "camera_name": "agentview",
+      "pos": [0.450426, -0.357643, 1.248867],
+      "quat": [0.795746, 0.421549, 0.203558, 0.384251],
+      "azimuth_deg": -38.45,
+      "elevation_deg": 10.75
+    },
+    {
+      "name": "view_10",
+      "camera_name": "agentview",
+      "pos": [0.37377, 0.026312, 1.458662],
+      "quat": [0.657166, 0.181721, 0.194963, 0.705053],
+      "azimuth_deg": 4.03,
+      "elevation_deg": -14.16
+    },
+    {
+      "name": "view_11",
+      "camera_name": "agentview",
+      "pos": [0.439411, -0.057715, 1.406051],
+      "quat": [0.710194, 0.246453, 0.216199, 0.623012],
+      "azimuth_deg": -7.48,
+      "elevation_deg": -6.8
+    },
+    {
+      "name": "view_12",
+      "camera_name": "agentview",
+      "pos": [0.513018, -0.014164, 1.33487],
+      "quat": [0.657873, 0.28461, 0.276861, 0.63996],
+      "azimuth_deg": -1.58,
+      "elevation_deg": 1.71
+    },
+    {
+      "name": "view_13",
+      "camera_name": "agentview",
+      "pos": [0.535215, -0.102211, 1.294459],
+      "quat": [0.69504, 0.332732, 0.275202, 0.574867],
+      "azimuth_deg": -10.81,
+      "elevation_deg": 6.09
+    },
+    {
+      "name": "view_14",
+      "camera_name": "agentview",
+      "pos": [0.565061, 0.032848, 1.263494],
+      "quat": [0.61051, 0.313466, 0.332217, 0.64703],
+      "azimuth_deg": 3.33,
+      "elevation_deg": 9.28
+    },
+    {
+      "name": "view_15",
+      "camera_name": "agentview",
+      "pos": [0.288964, 0.241368, 1.457442],
+      "quat": [0.408126, 0.11357, 0.242841, 0.872676],
+      "azimuth_deg": 39.87,
+      "elevation_deg": -13.98
+    },
+    {
+      "name": "view_16",
+      "camera_name": "agentview",
+      "pos": [0.4437, 0.164498, 1.378091],
+      "quat": [0.533604, 0.203609, 0.292637, 0.766925],
+      "azimuth_deg": 20.34,
+      "elevation_deg": -3.31
+    },
+    {
+      "name": "view_17",
+      "camera_name": "agentview",
+      "pos": [0.311193, 0.409429, 1.333621],
+      "quat": [0.292867, 0.127124, 0.377335, 0.869303],
+      "azimuth_deg": 52.76,
+      "elevation_deg": 1.85
+    },
+    {
+      "name": "view_18",
+      "camera_name": "agentview",
+      "pos": [0.461222, 0.255303, 1.317845],
+      "quat": [0.462688, 0.209221, 0.354947, 0.784958],
+      "azimuth_deg": 28.97,
+      "elevation_deg": 3.59
+    },
+    {
+      "name": "view_19",
+      "camera_name": "agentview",
+      "pos": [0.427094, 0.393179, 1.239855],
+      "quat": [0.353481, 0.190802, 0.434993, 0.805871],
+      "azimuth_deg": 42.63,
+      "elevation_deg": 11.64
+    },
+    {
+      "name": "view_20",
+      "camera_name": "agentview",
+      "pos": [0.207138, 0.336611, 1.444322],
+      "quat": [0.261088, 0.077459, 0.273672, 0.922462],
+      "azimuth_deg": 58.39,
+      "elevation_deg": -12.03
+    },
+    {
+      "name": "view_21",
+      "camera_name": "agentview",
+      "pos": [0.268679, 0.387125, 1.380048],
+      "quat": [0.279317, 0.105917, 0.338375, 0.892337],
+      "azimuth_deg": 55.24,
+      "elevation_deg": -3.54
+    },
+    {
+      "name": "view_22",
+      "camera_name": "agentview",
+      "pos": [0.227941, 0.453527, 1.341426],
+      "quat": [0.212376, 0.090264, 0.380598, 0.895485],
+      "azimuth_deg": 63.32,
+      "elevation_deg": 0.98
+    },
+    {
+      "name": "view_23",
+      "camera_name": "agentview",
+      "pos": [0.228469, 0.494941, 1.294126],
+      "quat": [0.193491, 0.092701, 0.422009, 0.880838],
+      "azimuth_deg": 65.22,
+      "elevation_deg": 6.12
+    },
+    {
+      "name": "view_24",
+      "camera_name": "agentview",
+      "pos": [0.1605, 0.548211, 1.255252],
+      "quat": [0.125781, 0.065738, 0.458505, 0.877286],
+      "azimuth_deg": 73.68,
+      "elevation_deg": 10.11
+    }
+  ]
+}

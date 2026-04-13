@@ -1,0 +1,41 @@
+project: vila
+group: stage1
+run_name: lift_stage1
+output_root: outputs/stage1
+seed: 0
+
+lapo:
+  num_epochs: 100
+  batch_size: 16
+  camera_num: 10
+  view_keys: [0, 2, 4, 6, 8, 16, 18, 20, 22, 24]
+  views_per_instance: 8
+  future_obs_offset: 10
+  latent_action_dim: 128
+  learning_rate: 0.0001
+  contrastive_loss_coef: 1.0
+  labeled_loss_coef: 0.0
+  infonce_temperature: 1.0
+  weighted_infonce_beta: 0.05
+  alignment_loss_coef: 1.0
+  use_aug: true
+  data_path: "$ROBOTICS_DATA_ROOT/lift/lift_25v.hdf5"
+  resize_size: 64
+  num_trajectories_to_load: 200
+
+bc:
+  num_epochs: 100
+  batch_size: 256
+  learning_rate: 0.00005
+  fixed_offset: 10
+  frame_stack: 1
+  camera_num: null # TODO: update for your dataset if needed
+  view_keys: [] # TODO: fill in dataset-specific camera ids
+  views_per_instance: 1
+  use_aug: false
+  encoder_scale: 32
+  encoder_num_res_blocks: 2
+  encoder_deep: false
+  resize_size: 64
+  data_path: "$ROBOTICS_DATA_ROOT/lift/lift_25v.hdf5"
+  num_trajectories_to_load: 200

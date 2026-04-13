@@ -1,0 +1,282 @@
+<mujoco model="multi_table_arena">
+  <asset>
+    <texture builtin="gradient" height="256" rgb1=".9 .9 1." rgb2=".2 .3 .4" type="skybox" width="256"/>
+    <texture file="../textures/light-gray-floor-tile.png" type="2d" name="texplane"/>
+    <material name="floorplane" reflectance="0.01" shininess="0.0" specular="0.0" texrepeat="2 2" texture="texplane" texuniform="true"/>
+    <!-- ceramic table texture and material-->
+    <texture file="../textures/ceramic.png" type="cube" name="tex-ceramic"/>
+    <material name="table_ceramic" reflectance="0.0" shininess="0.0" specular="0.2" texrepeat="1 1" texture="tex-ceramic" />
+    <!-- steel legs -->
+    <texture file="../textures/steel-brushed.png" type="cube" name="tex-steel-brushed"/>
+    <material name="table_legs_metal" reflectance="0.8" shininess="0.8" texrepeat="1 1" texture="tex-steel-brushed" />
+    <!-- plaster walls -->
+    <texture file="../textures/light-gray-plaster.png" type="2d" name="tex-light-gray-plaster"/>
+    <material name="walls_mat" reflectance="0.0" shininess="0.1" specular="0.1" texrepeat="3 3" texture="tex-light-gray-plaster" texuniform="true" />
+    <!-- added table texture and material for domain randomization -->
+    <texture  name="textable" builtin="flat" height="512" width="512" rgb1="0.5 0.5 0.5" rgb2="0.5 0.5 0.5"/>
+    <material name="table_mat" texture="textable" />
+
+  </asset>
+  <worldbody>
+    <!-- Floor -->
+    <geom condim="3" group="1" material="floorplane" name="floor" pos="0 0 0" size="3 3 .125" type="plane"/>
+    <!-- Walls (visual only) -->
+    <geom pos="-1.25 2.25 1.5" quat="0.6532815 0.6532815 0.2705981 0.2705981" size="1.06 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_leftcorner_visual" material="walls_mat"/>
+    <geom pos="-1.25 -2.25 1.5" quat="0.6532815 0.6532815 -0.2705981 -0.2705981" size="1.06 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_rightcorner_visual" material="walls_mat"/>
+    <geom pos="1.25 3 1.5" quat="0.7071 0.7071 0 0" size="1.75 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_left_visual" material="walls_mat"/>
+    <geom pos="1.25 -3 1.5" quat="0.7071 -0.7071 0 0" size="1.75 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_right_visual" material="walls_mat"/>
+    <geom pos="-2 0 1.5" quat="0.5 0.5 0.5 0.5" size="1.5 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_rear_visual" material="walls_mat"/>
+    <geom pos="3 0 1.5" quat="0.5 0.5 -0.5 -0.5" size="3 1.5 0.01" type="box" conaffinity="0" contype="0" group="1" name="wall_front_visual" material="walls_mat"/>
+    <!-- Tables will be procedurally generated -->
+
+    <light name="light1" diffuse=".8 .8 .8" dir="0 -.15 -1" directional="false" pos="1 1 4.0" specular="0.3 0.3 0.3" castshadow="false"/>
+    <light name="light2" diffuse=".8 .8 .8" dir="0 -.15 -1" directional="false" pos="-3. -3. 4.0" specular="0.3 0.3 0.3" castshadow="false"/>
+    <!-- front view -->
+    <camera mode="fixed" name="frontview" pos="1.6 0 1.45" quat="0.56 0.43 0.43 0.56"/>
+    <!-- bird view -->
+    <camera mode="fixed" name="birdview" pos="-0.2 0 3.0" quat="0.7071 0 0 0.7071"/>
+    <!-- agent view -->
+    <camera mode="fixed" name="agentview" pos="0.5 0 1.35" quat="0.653 0.271 0.271 0.653"/>
+    <!-- side view -->
+    <camera mode="fixed" name="sideview" pos="-0.05651774593317116 1.2761224129427358 1.4879572214102434" quat="0.009905065491771751 0.006877963156909582 0.5912228352893879 0.806418094001364" />
+    <!-- Additional camera views from JSON -->
+    <camera mode="fixed" name="true_ex_01" pos="-0.249761 -0.427006 1.355835" quat="0.893624 0.364731 -0.098835 -0.242155"/>
+    <camera mode="fixed" name="true_ex_02" pos="0.308901 0.068559 1.493616" quat="0.610849 0.136115 0.169638 0.761288"/>
+    <camera mode="fixed" name="true_ex_03" pos="0.438611 0.041335 1.408342" quat="0.636486 0.219027 0.240639 0.699289"/>
+    <camera mode="fixed" name="true_ex_04" pos="0.483191 -0.025819 1.36729" quat="0.67508 0.266358 0.252505 0.63997"/>
+    <camera mode="fixed" name="true_ex_05" pos="0.521853 -0.10077 1.312329" quat="0.701061 0.321421 0.265292 0.578638"/>
+    <camera mode="fixed" name="true_ex_06" pos="0.590582 -0.150768 1.184573" quat="0.676798 0.406967 0.316125 0.525726"/>
+    <camera mode="fixed" name="true_ex_07" pos="-0.202204 0.466534 1.340409" quat="-0.186808 -0.079618 0.383907 0.900766"/>
+
+    <camera mode="fixed" name="view_00" pos="0.098103 -0.409149 1.424856" quat="0.945063 0.305082 0.036064 0.111717"/>
+    <camera mode="fixed" name="view_01" pos="0.202127 -0.408044 1.395121" quat="0.915911 0.330377 0.077343 0.214419"/>
+    <camera mode="fixed" name="view_02" pos="0.047318 -0.481147 1.367716" quat="0.929257 0.366171 0.017962 0.045584"/>
+    <camera mode="fixed" name="view_03" pos="0.020398 -0.55868 1.274114" quat="0.893713 0.448267 0.008181 0.01631"/>
+    <camera mode="fixed" name="view_04" pos="0.217512 -0.548249 1.223437" quat="0.857712 0.478633 0.091478 0.163929"/>
+    <camera mode="fixed" name="view_05" pos="0.25232 -0.338008 1.424009" quat="0.902852 0.292458 0.097121 0.299823"/>
+    <camera mode="fixed" name="view_06" pos="0.397262 -0.177139 1.413133" quat="0.794655 0.268602 0.174326 0.515739"/>
+    <camera mode="fixed" name="view_07" pos="0.327817 -0.357177 1.366327" quat="0.86649 0.342876 0.133495 0.337357"/>
+    <camera mode="fixed" name="view_08" pos="0.398516 -0.372237 1.293858" quat="0.827092 0.396509 0.172212 0.359224"/>
+    <camera mode="fixed" name="view_09" pos="0.450426 -0.357643 1.248867" quat="0.795746 0.421549 0.203558 0.384251"/>
+    <camera mode="fixed" name="view_10" pos="0.37377 0.026312 1.458662" quat="0.657166 0.181721 0.194963 0.705053"/>
+    <camera mode="fixed" name="view_11" pos="0.439411 -0.057715 1.406051" quat="0.710194 0.246453 0.216199 0.623012"/>
+    <camera mode="fixed" name="view_12" pos="0.513018 -0.014164 1.33487" quat="0.657873 0.28461 0.276861 0.63996"/>
+    <camera mode="fixed" name="view_13" pos="0.535215 -0.102211 1.294459" quat="0.69504 0.332732 0.275202 0.574867"/>
+    <camera mode="fixed" name="view_14" pos="0.565061 0.032848 1.263494" quat="0.61051 0.313466 0.332217 0.64703"/>
+    <camera mode="fixed" name="view_15" pos="0.288964 0.241368 1.457442" quat="0.408126 0.11357 0.242841 0.872676"/>
+    <camera mode="fixed" name="view_16" pos="0.4437 0.164498 1.378091" quat="0.533604 0.203609 0.292637 0.766925"/>
+    <camera mode="fixed" name="view_17" pos="0.311193 0.409429 1.333621" quat="0.292867 0.127124 0.377335 0.869303"/>
+    <camera mode="fixed" name="view_18" pos="0.461222 0.255303 1.317845" quat="0.462688 0.209221 0.354947 0.784958"/>
+    <camera mode="fixed" name="view_19" pos="0.427094 0.393179 1.239855" quat="0.353481 0.190802 0.434993 0.805871"/>
+    <camera mode="fixed" name="view_20" pos="0.207138 0.336611 1.444322" quat="0.261088 0.077459 0.273672 0.922462"/>
+    <camera mode="fixed" name="view_21" pos="0.268679 0.387125 1.380048" quat="0.279317 0.105917 0.338375 0.892337"/>
+    <camera mode="fixed" name="view_22" pos="0.227941 0.453527 1.341426" quat="0.212376 0.090264 0.380598 0.895485"/>
+    <camera mode="fixed" name="view_23" pos="0.228469 0.494941 1.294126" quat="0.193491 0.092701 0.422009 0.880838"/>
+    <camera mode="fixed" name="view_24" pos="0.1605 0.548211 1.255252" quat="0.125781 0.065738 0.458505 0.877286"/>
+    <!-- Selected views from camera_views_180d_test.json with renamed cameras -->
+    <!-- view_09 -> in_01 -->
+    <camera mode="fixed" name="in_01" pos="0.191342 -0.46194 1.35" quat="0.905873 0.375944 0.07478 0.180189"/>
+
+    <!-- view_15 -> in_02 -->
+    <camera mode="fixed" name="in_02" pos="0.380203 -0.324724 1.35" quat="0.838779 0.3481 0.160476 0.386683"/>
+    <!-- in_03 -->
+    <camera mode="fixed" name="in_03" pos="0.5 0 1.35" quat="0.653 0.271 0.271 0.653"/>
+    <!-- in_04 -->
+    <camera mode="fixed" name="in_04" pos="0.380203 0.324724 1.35" quat="0.386683 0.160476 0.3481 0.838779"/>
+
+    <!-- in_05 -->
+    <camera mode="fixed" name="in_05" pos="0.191342 0.46194 1.35" quat="0.180189 0.07478 0.375944 0.905873"/>
+
+    <!-- Extrapolation views from robomimic/test.json -->
+    <!-- view_00 -> extrapolation_01 -->
+    <camera mode="fixed" name="ex_01" pos="-0.404508 -0.293893 1.35" quat="0.822951 0.341531 -0.174019 -0.419315"/>
+
+    <!-- view_01 -> ex_02 -->
+    <camera mode="fixed" name="ex_02" pos="-0.293893 -0.404508 1.35" quat="0.878415 0.364549 -0.118449 -0.285414"/>
+
+    <!-- view_15 -> ex_03 -->
+    <camera mode="fixed" name="ex_03" pos="-0.293893 0.404508 1.35" quat="-0.285414 -0.118449 0.364549 0.878415"/>
+
+    <!-- view_16 -> ex_04 -->
+    <camera mode="fixed" name="ex_04" pos="-0.404508 0.293893 1.35" quat="-0.419315 -0.174019 0.341531 0.822951"/>
+
+        <!-- Selected views from test_hard.json -->
+    <!-- view_00 -> ex_hard_01 -->
+    <camera mode="fixed" name="ex_hard_01" pos="-0.139232 -0.335862 1.46596" quat="0.94782 0.252035 -0.050171 -0.188675"/>
+
+    <!-- view_02 -> ex_hard_02 -->
+    <camera mode="fixed" name="ex_hard_02" pos="-0.218463 -0.372609 1.41569" quat="0.915148 0.306325 -0.083179 -0.248497"/>
+
+    <!-- view_17 -> in_hard_01 -->
+    <camera mode="fixed" name="in_hard_01" pos="0.485554 -0.169442 1.333621" quat="0.747898 0.324637 0.230549 0.531138"/>
+
+    <!-- view_23 -> in_hard_02 -->
+    <camera mode="fixed" name="in_hard_02" pos="0.448118 -0.053264 1.398852" quat="0.704355 0.250796 0.222752 0.625593"/>
+
+    <!-- view_27 -> in_hard_03 -->
+    <camera mode="fixed" name="in_hard_03" pos="0.62488 0.038486 1.146057" quat="0.575783 0.37113 0.394691 0.612336"/>
+
+    <!-- view_33 -> in_hard_04 -->
+    <camera mode="fixed" name="in_hard_04" pos="0.545544 0.232394 1.217607" quat="0.480176 0.271067 0.410107 0.726475"/>
+
+    
+    <!-- view_43 -> ex_hard_03 -->
+    <camera mode="fixed" name="ex_hard_03" pos="-0.178479 0.361669 1.438369" quat="-0.217339 -0.066246 0.283936 0.931534"/>
+
+    <!-- view_48 -> ex_hard_04 -->
+    <camera mode="fixed" name="ex_hard_04" pos="-0.197572 0.579753 1.178122" quat="-0.139659 -0.084985 0.512845 0.842771"/>
+
+    <!-- view_25 -> in_hard_05 -->
+    <camera mode="fixed" name="in_hard_05" pos="0.531457 0.16152 1.279426" quat="0.533551 0.264442 0.356754 0.719805"/>
+<!-- agentview_mug_1 cameras -->
+    <camera mode="fixed" name="agentview_mug_1_00" pos="0.742039 -0.012952 1.532522" quat="0.65139 0.290546 0.285519 0.640119"/>
+    <camera mode="fixed" name="agentview_mug_1_01" pos="0.752963 -0.013143 1.519473" quat="0.64883 0.29622 0.291094 0.637603"/>
+    <camera mode="fixed" name="agentview_mug_1_02" pos="0.763658 -0.01333 1.506236" quat="0.64622 0.30187 0.296647 0.635039"/>
+    <camera mode="fixed" name="agentview_mug_1_03" pos="0.742152 0.0 1.532522" quat="0.645779 0.288044 0.288044 0.645779"/>
+    <camera mode="fixed" name="agentview_mug_1_04" pos="0.753078 0.0 1.519473" quat="0.643241 0.293668 0.293668 0.643241"/>
+    <camera mode="fixed" name="agentview_mug_1_05" pos="0.763775 0.0 1.506236" quat="0.640654 0.29927 0.29927 0.640654"/>
+    <camera mode="fixed" name="agentview_mug_1_06" pos="0.742039 0.012952 1.532522" quat="0.640119 0.285519 0.290546 0.65139"/>
+    <camera mode="fixed" name="agentview_mug_1_07" pos="0.752963 0.013143 1.519473" quat="0.637603 0.291094 0.29622 0.64883"/>
+    <camera mode="fixed" name="agentview_mug_1_08" pos="0.763658 0.01333 1.506236" quat="0.635039 0.296647 0.30187 0.64622"/>
+    <!-- agentview_mug_2 cameras -->
+    <camera mode="fixed" name="agentview_mug_2_00" pos="0.730555 -0.025512 1.545378" quat="0.659483 0.287283 0.277426 0.636856"/>
+    <camera mode="fixed" name="agentview_mug_2_01" pos="0.752619 -0.026282 1.519473" quat="0.654369 0.298749 0.288498 0.631917"/>
+    <camera mode="fixed" name="agentview_mug_2_02" pos="0.773767 -0.027021 1.492814" quat="0.649056 0.310123 0.299483 0.626786"/>
+    <camera mode="fixed" name="agentview_mug_2_03" pos="0.731 0.0 1.545378" quat="0.648268 0.282397 0.282397 0.648268"/>
+    <camera mode="fixed" name="agentview_mug_2_04" pos="0.753078 0.0 1.519473" quat="0.643241 0.293668 0.293668 0.643241"/>
+    <camera mode="fixed" name="agentview_mug_2_05" pos="0.774239 0.0 1.492814" quat="0.638018 0.304849 0.304849 0.638018"/>
+    <camera mode="fixed" name="agentview_mug_2_06" pos="0.730555 0.025512 1.545378" quat="0.636856 0.277426 0.287283 0.659483"/>
+    <camera mode="fixed" name="agentview_mug_2_07" pos="0.752619 0.026282 1.519473" quat="0.631917 0.288498 0.298749 0.654369"/>
+    <camera mode="fixed" name="agentview_mug_2_08" pos="0.773767 0.027021 1.492814" quat="0.626786 0.299483 0.310123 0.649056"/>
+
+    <!-- agentview_mug_3 cameras -->
+    <camera mode="fixed" name="agentview_mug_3_00" pos="0.718639 -0.037662 1.558037" quat="0.667519 0.283878 0.269391 0.633451"/>
+    <camera mode="fixed" name="agentview_mug_3_01" pos="0.752046 -0.039413 1.519473" quat="0.659859 0.301255 0.28588 0.626183"/>
+    <camera mode="fixed" name="agentview_mug_3_02" pos="0.783392 -0.041056 1.479211" quat="0.651747 0.318425 0.302174 0.618485"/>
+    <camera mode="fixed" name="agentview_mug_3_03" pos="0.719625 0.0 1.558037" quat="0.650708 0.276729 0.276729 0.650708"/>
+    <camera mode="fixed" name="agentview_mug_3_04" pos="0.753078 0.0 1.519473" quat="0.643241 0.293668 0.293668 0.643241"/>
+    <camera mode="fixed" name="agentview_mug_3_05" pos="0.784467 0.0 1.479211" quat="0.635333 0.310405 0.310405 0.635333"/>
+    <camera mode="fixed" name="agentview_mug_3_06" pos="0.718639 0.037662 1.558037" quat="0.633451 0.269391 0.283878 0.667519"/>
+    <camera mode="fixed" name="agentview_mug_3_07" pos="0.752046 0.039413 1.519473" quat="0.626183 0.28588 0.301255 0.659859"/>
+    <camera mode="fixed" name="agentview_mug_3_08" pos="0.783392 0.041056 1.479211" quat="0.618485 0.302174 0.318425 0.651747"/>
+
+    <!-- agentview_mug_5 cameras -->
+    <camera mode="fixed" name="agentview_mug_5_00" pos="0.693572 -0.06068 1.582751" quat="0.683404 0.276652 0.253505 0.626225"/>
+    <camera mode="fixed" name="agentview_mug_5_01" pos="0.750212 -0.065635 1.519473" quat="0.670687 0.306198 0.280579 0.614571"/>
+    <camera mode="fixed" name="agentview_mug_5_02" pos="0.801143 -0.070091 1.451481" quat="0.656692 0.335162 0.307119 0.601747"/>
+    <camera mode="fixed" name="agentview_mug_5_03" pos="0.696222 0.0 1.582751" quat="0.655438 0.265331 0.265331 0.655438"/>
+    <camera mode="fixed" name="agentview_mug_5_04" pos="0.753078 0.0 1.519473" quat="0.643241 0.293668 0.293668 0.643241"/>
+    <camera mode="fixed" name="agentview_mug_5_05" pos="0.804203 0.0 1.451481" quat="0.629819 0.321446 0.321446 0.629819"/>
+    <camera mode="fixed" name="agentview_mug_5_06" pos="0.693572 0.06068 1.582751" quat="0.626225 0.253505 0.276652 0.683404"/>
+    <camera mode="fixed" name="agentview_mug_5_07" pos="0.750212 0.065635 1.519473" quat="0.614571 0.280579 0.306198 0.670687"/>
+    <camera mode="fixed" name="agentview_mug_5_08" pos="0.801143 0.070091 1.451481" quat="0.601747 0.307119 0.335162 0.656692"/>
+
+
+  <!-- agentview_1 cameras -->
+    <camera mode="fixed" name="agentview_1_00" pos="0.491995 -0.008588 1.358658" quat="0.661133 0.267636 0.263006 0.649694"/>
+    <camera mode="fixed" name="agentview_1_01" pos="0.499924 -0.008726 1.35" quat="0.658772 0.273396 0.268665 0.647374"/>
+    <camera mode="fixed" name="agentview_1_02" pos="0.5077 -0.008862 1.341205" quat="0.656362 0.279134 0.274304 0.645005"/>
+    <camera mode="fixed" name="agentview_1_03" pos="0.49207 0.0 1.358658" quat="0.655438 0.265331 0.265331 0.655438"/>
+    <camera mode="fixed" name="agentview_1_04" pos="0.5 0.0 1.35" quat="0.653098 0.271041 0.271041 0.653098"/>
+    <camera mode="fixed" name="agentview_1_05" pos="0.507777 0.0 1.341205" quat="0.650708 0.27673 0.27673 0.650708"/>
+    <camera mode="fixed" name="agentview_1_06" pos="0.491995 0.008588 1.358658" quat="0.649694 0.263006 0.267636 0.661133"/>
+    <camera mode="fixed" name="agentview_1_07" pos="0.499924 0.008726 1.35" quat="0.647374 0.268665 0.273396 0.658772"/>
+    <camera mode="fixed" name="agentview_1_08" pos="0.5077 0.008862 1.341205" quat="0.645005 0.274304 0.279134 0.656362"/>
+
+  <!-- agentview_2 cameras -->
+    <camera mode="fixed" name="agentview_2_00" pos="0.483696 -0.016891 1.367176" quat="0.669108 0.264092 0.255031 0.64615"/>
+    <camera mode="fixed" name="agentview_2_01" pos="0.499695 -0.01745 1.35" quat="0.664397 0.27573 0.266269 0.6416"/>
+    <camera mode="fixed" name="agentview_2_02" pos="0.515086 -0.017987 1.332276" quat="0.659483 0.287283 0.277426 0.636856"/>
+    <camera mode="fixed" name="agentview_2_03" pos="0.483991 0.0 1.367176" quat="0.657729 0.259601 0.259601 0.657729"/>
+    <camera mode="fixed" name="agentview_2_04" pos="0.5 0.0 1.35" quat="0.653098 0.271041 0.271041 0.653098"/>
+    <camera mode="fixed" name="agentview_2_05" pos="0.5154 0.0 1.332276" quat="0.648268 0.282398 0.282398 0.648268"/>
+    <camera mode="fixed" name="agentview_2_06" pos="0.483696 0.016891 1.367176" quat="0.64615 0.255031 0.264092 0.669108"/>
+    <camera mode="fixed" name="agentview_2_07" pos="0.499695 0.01745 1.35" quat="0.6416 0.266269 0.27573 0.664397"/>
+    <camera mode="fixed" name="agentview_2_08" pos="0.515086 0.017987 1.332276" quat="0.636856 0.277426 0.287283 0.659483"/>
+    <!-- agentview_5 cameras -->
+    <!-- agentview_3 cameras -->
+    <camera mode="fixed" name="agentview_3_00" pos="0.475112 -0.0249 1.375551" quat="0.677019 0.26041 0.24712 0.642467"/>
+    <camera mode="fixed" name="agentview_3_01" pos="0.499315 -0.026168 1.35" quat="0.66997 0.278043 0.263853 0.635778"/>
+    <camera mode="fixed" name="agentview_3_02" pos="0.522149 -0.027365 1.323215" quat="0.662462 0.295485 0.280405 0.628653"/>
+    <camera mode="fixed" name="agentview_3_03" pos="0.475764 0.0 1.375551" quat="0.659969 0.253852 0.253852 0.659969"/>
+    <camera mode="fixed" name="agentview_3_04" pos="0.5 0.0 1.35" quat="0.653098 0.271041 0.271041 0.653098"/>
+    <camera mode="fixed" name="agentview_3_05" pos="0.522866 0.0 1.323215" quat="0.645779 0.288044 0.288044 0.645779"/>
+    <camera mode="fixed" name="agentview_3_06" pos="0.475112 0.0249 1.375551" quat="0.642467 0.24712 0.26041 0.677019"/>
+    <camera mode="fixed" name="agentview_3_07" pos="0.499315 0.026168 1.35" quat="0.635778 0.263853 0.278043 0.66997"/>
+    <camera mode="fixed" name="agentview_3_08" pos="0.522149 0.027365 1.323215" quat="0.628653 0.280405 0.295485 0.662462"/>
+
+    <camera mode="fixed" name="agentview_5_00" pos="0.457131 -0.039994 1.391865" quat="0.692643 0.252633 0.231496 0.63469"/>
+    <camera mode="fixed" name="agentview_5_01" pos="0.498097 -0.043578 1.35" quat="0.680964 0.282605 0.25896 0.623989"/>
+    <camera mode="fixed" name="agentview_5_02" pos="0.535273 -0.04683 1.30471" quat="0.667989 0.31204 0.285932 0.612099"/>
+    <camera mode="fixed" name="agentview_5_03" pos="0.458877 0.0 1.391865" quat="0.664299 0.242295 0.242295 0.664299"/>
+    <camera mode="fixed" name="agentview_5_04" pos="0.5 0.0 1.35" quat="0.653098 0.271041 0.271041 0.653098"/>
+    <camera mode="fixed" name="agentview_5_05" pos="0.537317 0.0 1.30471" quat="0.640654 0.29927 0.29927 0.640654"/>
+    <camera mode="fixed" name="agentview_5_06" pos="0.457131 0.039994 1.391865" quat="0.63469 0.231496 0.252633 0.692643"/>
+    <camera mode="fixed" name="agentview_5_07" pos="0.498097 0.043578 1.35" quat="0.623989 0.25896 0.282605 0.680964"/>
+    <camera mode="fixed" name="agentview_5_08" pos="0.535273 0.04683 1.30471" quat="0.612099 0.285932 0.31204 0.667989"/>
+
+
+    
+  <!-- view08_1 cameras -->
+    <camera mode="fixed" name="view08_1_00" pos="0.385025 -0.379014 1.300753" quat="0.831697 0.394784 0.161549 0.355426"/>
+    <camera mode="fixed" name="view08_1_01" pos="0.391959 -0.379135 1.293858" quat="0.830196 0.397997 0.168745 0.351993"/>
+    <camera mode="fixed" name="view08_1_02" pos="0.398771 -0.379254 1.286843" quat="0.828631 0.401179 0.175929 0.348532"/>
+    <camera mode="fixed" name="view08_1_03" pos="0.391582 -0.372237 1.300753" quat="0.828564 0.393359 0.164988 0.362671"/>
+    <camera mode="fixed" name="view08_1_04" pos="0.398516 -0.372237 1.293858" quat="0.827092 0.396509 0.172212 0.359224"/>
+    <camera mode="fixed" name="view08_1_05" pos="0.405329 -0.372237 1.286843" quat="0.825558 0.399629 0.179423 0.35575"/>
+    <camera mode="fixed" name="view08_1_06" pos="0.398018 -0.365346 1.300753" quat="0.825367 0.391904 0.168414 0.369887"/>
+    <camera mode="fixed" name="view08_1_07" pos="0.404952 -0.365225 1.293858" quat="0.823926 0.394991 0.175666 0.366428"/>
+    <camera mode="fixed" name="view08_1_08" pos="0.411764 -0.365106 1.286843" quat="0.822422 0.398048 0.182904 0.362941"/>
+
+    
+
+    <!-- view08_2 cameras -->
+    <camera mode="fixed" name="view08_2_00" pos="0.371303 -0.38543 1.307526" quat="0.836235 0.392873 0.150917 0.351549"/>
+    <camera mode="fixed" name="view08_2_01" pos="0.385282 -0.385918 1.293858" quat="0.833236 0.399454 0.165266 0.344735"/>
+    <camera mode="fixed" name="view08_2_02" pos="0.398777 -0.386389 1.27971" quat="0.829983 0.405914 0.179564 0.337816"/>
+    <camera mode="fixed" name="view08_2_03" pos="0.384528 -0.372237 1.307526" quat="0.829972 0.390179 0.157751 0.366089"/>
+    <camera mode="fixed" name="view08_2_04" pos="0.398516 -0.372237 1.293858" quat="0.827092 0.396509 0.172212 0.359224"/>
+    <camera mode="fixed" name="view08_2_05" pos="0.412019 -0.372237 1.27971" quat="0.823961 0.402718 0.186621 0.352249"/>
+    <camera mode="fixed" name="view08_2_06" pos="0.397284 -0.35859 1.307526" quat="0.823456 0.387367 0.164537 0.380519"/>
+    <camera mode="fixed" name="view08_2_07" pos="0.411264 -0.358102 1.293858" quat="0.820697 0.393443 0.179106 0.373604"/>
+    <camera mode="fixed" name="view08_2_08" pos="0.424759 -0.357631 1.27971" quat="0.817688 0.3994 0.193621 0.366576"/>
+
+    <!-- view08_3 cameras -->
+    <camera mode="fixed" name="view08_3_00" pos="0.357358 -0.391476 1.314175" quat="0.840704 0.390777 0.140321 0.347592"/>
+    <camera mode="fixed" name="view08_3_01" pos="0.378488 -0.392584 1.293858" quat="0.836212 0.400881 0.161774 0.33745"/>
+    <camera mode="fixed" name="view08_3_02" pos="0.398528 -0.393634 1.272462" quat="0.831148 0.410711 0.183115 0.327077"/>
+    <camera mode="fixed" name="view08_3_03" pos="0.377357 -0.372237 1.314175" quat="0.831317 0.38697 0.150502 0.36948"/>
+    <camera mode="fixed" name="view08_3_04" pos="0.398516 -0.372237 1.293858" quat="0.827092 0.396509 0.172212 0.359224"/>
+    <camera mode="fixed" name="view08_3_05" pos="0.418583 -0.372237 1.272462" quat="0.822301 0.405777 0.193804 0.348722"/>
+    <camera mode="fixed" name="view08_3_06" pos="0.396321 -0.351978 1.314175" quat="0.82136 0.382898 0.16058 0.391115"/>
+    <camera mode="fixed" name="view08_3_07" pos="0.417451 -0.35087 1.293858" quat="0.817405 0.391865 0.182532 0.380752"/>
+    <camera mode="fixed" name="view08_3_08" pos="0.437491 -0.34982 1.272462" quat="0.812891 0.400564 0.204359 0.370127"/>
+
+    <!-- view08_5 cameras -->
+    <camera mode="fixed" name="view08_5_00" pos="0.32885 -0.40243 1.327092" quat="0.849432 0.386031 0.119246 0.339449"/>
+    <camera mode="fixed" name="view08_5_01" pos="0.364557 -0.405553 1.293858" quat="0.841974 0.403644 0.154753 0.322805"/>
+    <camera mode="fixed" name="view08_5_02" pos="0.397243 -0.408413 1.257626" quat="0.832914 0.420487 0.189965 0.305546"/>
+    <camera mode="fixed" name="view08_5_03" pos="0.362673 -0.372237 1.327092" quat="0.833817 0.380463 0.135971 0.376178"/>
+    <camera mode="fixed" name="view08_5_04" pos="0.398516 -0.372237 1.293858" quat="0.827092 0.396509 0.172212 0.359224"/>
+    <camera mode="fixed" name="view08_5_05" pos="0.431327 -0.372237 1.257626" quat="0.818793 0.411801 0.208125 0.341587"/>
+    <camera mode="fixed" name="view08_5_06" pos="0.393735 -0.339212 1.327092" quat="0.816615 0.37417 0.152437 0.41219"/>
+    <camera mode="fixed" name="view08_5_07" pos="0.429442 -0.336088 1.293858" quat="0.810636 0.38862 0.189344 0.394959"/>
+    <camera mode="fixed" name="view08_5_08" pos="0.462128 -0.333228 1.257626" quat="0.803114 0.402331 0.22589 0.376977"/>
+
+    <!-- true_ex_dist cameras -->
+    <camera mode="fixed" name="true_ex_dist7" pos="0.518533 0.095356 1.720307" quat="0.616329 0.172358 0.206944 0.740004"/>
+    <camera mode="fixed" name="true_ex_dist5" pos="0.544524 0.081768 1.704786" quat="0.625791 0.18476 0.214575 0.726779"/>
+    <camera mode="fixed" name="true_ex_dist3" pos="0.559709 0.074085 1.695054" quat="0.630456 0.192134 0.219241 0.719404"/>
+
+    <!-- true_ex_02 cameras -->
+    <camera mode="fixed" name="true_ex_02_00" pos="0.290213 0.058466 1.504035" quat="0.626949 0.125563 0.156784 0.75272"/>
+    <camera mode="fixed" name="true_ex_02_01" pos="0.311106 0.057737 1.493616" quat="0.624042 0.139055 0.167237 0.750511"/>
+    <camera mode="fixed" name="true_ex_02_02" pos="0.331622 0.05702 1.482474" quat="0.620946 0.152504 0.177638 0.748073"/>
+    <camera mode="fixed" name="true_ex_02_03" pos="0.287996 0.068559 1.504035" quat="0.613716 0.122808 0.158951 0.763547"/>
+    <camera mode="fixed" name="true_ex_02_04" pos="0.308901 0.068559 1.493616" quat="0.610849 0.136115 0.169638 0.761288"/>
+    <camera mode="fixed" name="true_ex_02_05" pos="0.32943 0.068559 1.482474" quat="0.607795 0.149381 0.180273 0.758796"/>
+    <camera mode="fixed" name="true_ex_02_06" pos="0.285428 0.078568 1.504035" quat="0.600297 0.120015 0.16107 0.774142"/>
+    <camera mode="fixed" name="true_ex_02_07" pos="0.30632 0.079298 1.493616" quat="0.59747 0.133134 0.171988 0.771833"/>
+    <camera mode="fixed" name="true_ex_02_08" pos="0.326836 0.080014 1.482474" quat="0.59446 0.146212 0.182853 0.769288"/>
+  </worldbody>
+</mujoco>
